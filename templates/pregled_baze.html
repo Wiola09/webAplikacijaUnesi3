@@ -1,0 +1,16 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% import "bootstrap/wtf.html" as wtf %}
+<h1>Унесите податке за путни налог: </h1>
+<div>
+    {{ wtf.quick_form(prenesiUHTML, novalidate=True, button_map={"submit": "primary"}) }}
+</div>
+</body>
+</html>

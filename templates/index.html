@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+
+    <title>Miroslav Zeljkovic Site</title>
+    <link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet">
+
+    <link rel="icon" href="favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Montserrat&amp;family=Sacramento&amp;display=swap"
+          rel="stylesheet">
+
+</head>
+<body>
+<div class="top-container">
+    <img class="top-cloud" src="{{ url_for('static', filename='img/cloud.png')}}" alt="cloud-img"/>
+
+
+    <h1>I'm Miroslav.</h1>
+    <h2>Electrical Engineer</h2>
+    <img class="bottom-cloud" src="{{ url_for('static', filename='img/cloud.png')}}" alt="cloud-img"/>
+    <img class="planina" src="{{ url_for('static', filename='img/mountain.png')}}" alt="mountain-img"/>
+</div>
+
+<div class="middle-container">
+    <div class="profile">
+        <img src="{{ url_for('static', filename='img/Miroslav_Zeljković.png')}}" alt="">
+        <h2>Hello.</h2>
+        <p class="intro">I am a python developer with the ambition to continue learning.</p>
+
+    </div>
+    <hr>
+    <div class="skills">
+        <h2>My Skills.</h2>
+        <div class="skill-row">
+            <img class="Programmer-img" src="{{ url_for('static', filename='img/giphy.gif')}}" alt="">
+            <h3>Programming</h3>
+            <p>I started learning code at the beginning of 2022 because I realized it was time for a change in my
+                career. I wanted to contribute to the ubiquitous digitization and
+                automation.</p>
+        </div>
+
+
+        <div class="skill-row">
+            <img class="python-developer-img"
+                 src="{{ url_for('static', filename='img/python-developer-skills-1-550x609.png')}}" alt="">
+            <h3>Python development</h3>
+            <p>As a Python developer I make use of the Python programming language, frameworks, and tools to design,
+                program, and modify applications/websites.</p>
+        </div>
+        <div class="skill-row">
+            <img class="Full_Stack-img" src="{{ url_for('static', filename='img/Full_Stack_With_Python.jpg')}}" alt="">
+
+            <h3>Front-end technologies</h3>
+            <p>I have solid understanding the three primary front-end markup languages for Python: HTML5, CSS3, and
+                JavaScript. </p>
+        </div>
+    </div>
+    <hr>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% import "bootstrap/wtf.html" as wtf %}
+<a href="">Иди на претрагу базе путних налога</a>
+<hr>
+<a href="/">Креирај нови путни налог</a>
+<hr>
+<h1>Подаци о путним налозима </h1>
+<h2>Извршиоц {{prenesiUHTML[0].ime_izvrsioca}}</h2>
+<h2>Укупно је било {{duzina_liste}} налога у периоду од {{pocetak_intervala}} до {{kraj_intervala}}</h2>
+
+<hr>
+<div>
+
+    <div>
+        {% for post in prenesiUHTML %}
+        <div class="post-preview">
+            <h3 class="post-title">
+                Локација {{post.EE_objekat}}
+            </h3>
+            <h3 class="post-subtitle">
+                Дан налога {{post.datum_naloga}}
+            </h3>
+
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
