@@ -35,7 +35,7 @@ print(excelFiles)
 
 
 # Samo mi se jedan fajl nalazi na putanji, pa biram njega
-wb = openpyxl.load_workbook(excelFiles[1])
+wb = openpyxl.load_workbook(excelFiles[0])
 
 print(os.getcwd())
 
@@ -67,7 +67,7 @@ class PromeniEksel():
         spojen_broj_naloga = ("/").join((str(novi_broj), lista_broj_naloga[1]))
         wb['Novi RZ']['G7'].value = spojen_broj_naloga
 
-        wb.save(excelFiles[1])
+        wb.save(excelFiles[0])
         # Датум
         wb['Novi RZ']['C4'].value = datum_naloga
 
@@ -97,7 +97,7 @@ class PromeniEksel():
         naziv_dokumenta = f"Nalog Broj {spojen_broj_naloga} za {ime_izvrsioca} dana {datum_naloga} odlazak na objekat {EE_objekat}.xlsx"   #  odlazak na objekat {EE_objekat} problem sa enkodingom kod slanja fajla u mailu
         os.chdir(filePath2)
         wb.save(naziv_dokumenta)
-        print(excelFiles[1] + ' completed.')
+        print(excelFiles[0] + ' completed.')
         objekat_mail=PosaljiMail()
         objekat_mail.posalji_mail(naziv_dokumenta, ime_izvrsioca, datum_naloga, EE_objekat, spojen_broj_naloga)
         filePath = r"C:\Users\Miroslav\OpenAI\EXEL 2 open\Orginal"
