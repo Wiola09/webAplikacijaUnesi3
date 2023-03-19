@@ -13,7 +13,8 @@ filePath2 =r"C:\Users\Miroslav\OpenAI\EXEL 2 open\Napravljeni nalozi"
 
 #KORISTENJE RELATIVNE PUTANJE
 # Goes inside that folder.
-filePath3 = r"static\db\osnovni"
+filePath3 = r".\static\db\osnovni"
+print(filePath3, "ovaj")
 
 ### PROMENA RADNOG DIREKTORIJUMA
 os.chdir(filePath3)
