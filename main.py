@@ -1,8 +1,8 @@
 import os
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 
-from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm, PregledajBazu
+from forms import CreatePostForm, PregledajBazu
 
 from baza_podataka import db, Nalozi
 
