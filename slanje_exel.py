@@ -37,6 +37,7 @@ class PosaljiMail():
         message.attach(body)
 
         attachmentPath = f"c:\\Users\\Miroslav\\OpenAI\\EXEL 2 open\\Napravljeni nalozi\\{naziv_dokumenta}"
+        attachmentPath = f"/opt/render/project/src/static/db/{naziv_dokumenta}"
 
         try:
             with open(attachmentPath, "rb") as attachment:

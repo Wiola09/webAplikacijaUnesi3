@@ -17,7 +17,10 @@ filePath2 =r"C:\Users\Miroslav\OpenAI\EXEL 2 open\Napravljeni nalozi"
 #KORISTENJE RELATIVNE PUTANJE
 # Goes inside that folder.
 filePath3 = r"static/db/osnovni"
+filePath4 = r"static/db"
 abs_path = os.path.join(os.getcwd(), filePath3)
+abs_path_nalozi = os.path.join(os.getcwd(), filePath4)
+
 print(abs_path)
 print(filePath3, "ovaj")
 
@@ -95,13 +98,15 @@ class PromeniEksel():
         spojen_broj_naloga = spojen_broj_naloga.replace("/", "_")
 
         naziv_dokumenta = f"Nalog Broj {spojen_broj_naloga} za {ime_izvrsioca} dana {datum_naloga} odlazak na objekat {EE_objekat}.xlsx"   #  odlazak na objekat {EE_objekat} problem sa enkodingom kod slanja fajla u mailu
-        # os.chdir(filePath2)
-        # wb.save(naziv_dokumenta)
+        os.chdir(abs_path_nalozi)
+        wb.save(naziv_dokumenta)
+        lista_fajlova = os.listdir('.')
+        print(lista_fajlova)
         print(excelFiles[0] + ' completed.')
         objekat_mail=PosaljiMail()
         objekat_mail.posalji_mail(naziv_dokumenta, ime_izvrsioca, datum_naloga, EE_objekat, spojen_broj_naloga)
-        filePath = r"C:\Users\Miroslav\OpenAI\EXEL 2 open\Orginal"
-        os.chdir(filePath)
+        # filePath = r"C:\Users\Miroslav\OpenAI\EXEL 2 open\Orginal"
+        # os.chdir(filePath)
         return spojen_broj_naloga
         # sys.exit()
 
