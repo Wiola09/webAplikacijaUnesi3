@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% import "bootstrap/wtf.html" as wtf %}
+<a href="/pregled_baze">Иди на претрагу базе путних налога</a>
+<hr>
+<a href="/biranje_sluzbe">Изабери службу и креирај налог</a>
+<hr>
+<div>
+    {{ wtf.quick_form(dugme_posalji, novalidate=True, button_map={"submit": "primary"}) }}
+</div>
+
+
+<hr>
+<h1>Подаци о путним налозима </h1>
+<h2>Извршиоц {{objekat_nalog.ime_izvrsioca}}</h2>
+
+
+<hr>
+<div>
+
+    <div>
+
+        <div class="post-preview">
+            <h3 class="post-title">
+                Број налога {{objekat_nalog.broj_naloga}}
+            </h3>
+            <h3 class="post-title">
+                Име првог сарадника {{objekat_nalog.ime_saradnika_1}}
+            </h3>
+            <h3 class="post-title">
+                Датум креирања налога {{objekat_nalog.datum_naloga}}
+            </h3>
+            <h3 class="post-title">
+                Локација {{objekat_nalog.EE_objekat}}
+            </h3>
+            <h3 class="post-subtitle">
+                Опис задатка: {{objekat_nalog.opis_zadatka }}
+            </h3>
+
+        </div>
+        <hr>
+
+
+    </div>
+
+</div>
+</body>
+</html>

@@ -5,24 +5,21 @@ from email.mime.application import MIMEApplication
 from os.path import basename
 import os
 
+from konstante import gmail, mail_primalac, MAIL_PASSWORD
+
 smtp_server = 'smtp.gmail.com'
 smtp_port = 587
 # Replace with your own gmail account
-gmail = 'miroslavzeljkovic@gmail.com'
 # mail_primalac = 'jelena.djuricic@ems.rs'
 # mail_primalac = 'nebojsa.dragutinovic@ems.rs'
-mail_primalac = 'miroslav.zeljkovic@ems.rs'
-MAIL_PASSWORD = os.getenv("MAIL_PASSWORD", "default_value")
-print(MAIL_PASSWORD)
-
 
 class PosaljiMail():
     def __init__(self):
         print("PosaljiMail")
 
-    def posalji_mail(self, naziv_dokumenta,ime_izvrsioca, datum_naloga, EE_objekat, spojen_broj_naloga):
+    def posalji_mail(self, naziv_dokumenta,ime_izvrsioca, datum_naloga, EE_objekat, spojen_broj_naloga, mail_za_slanje ):
         message = MIMEMultipart('mixed')
-        message['From'] = 'Putni nalozi STKS <{sender}>'.format(sender=mail_primalac)
+        message['From'] = 'Putni nalozi STKS <{sender}>'.format(sender="test")
         # message['From'] = f'Radoslav Paunović <test@gmail.com>'
         message['To'] = "Zarko Veličković@ems.rs"
         message['CC'] = 'Kum.Raša@ems.rs'
@@ -39,6 +36,13 @@ class PosaljiMail():
         attachmentPath = f"c:\\Users\\Miroslav\\OpenAI\\EXEL 2 open\\Napravljeni nalozi\\{naziv_dokumenta}"
         attachmentPath = f"/opt/render/project/src/static/db/{naziv_dokumenta}"
 
+        # varijanta za slanje sa racunara
+        putanja_radna = os.getcwd()
+        print(putanja_radna , "test_putanje")
+        attachmentPath = f"{putanja_radna}/{naziv_dokumenta}"
+        # [Errno 2] No such file or directory: '/opt/render/project/src/static/db/Nalog Broj 85_23 za Miroslav Zeljković dana 2023-03-20 odlazak na objekat DV ekipa Bajina Bašta.xlsx'
+
+        print(os.getcwd(), "test_putanje")
         try:
             with open(attachmentPath, "rb") as attachment:
 
@@ -63,6 +67,10 @@ class PosaljiMail():
 
         context = ssl.create_default_context()
 
+        #  za slanje na vise mail adresa smtplib prihvata listu !!!!
+        # mail_primalac = [miroslav.zeljkovic@ems.rs, 'miroslavzeljkovic@gmail.com']
+        mail_primalac = mail_za_slanje
+        print(mail_primalac, "листа")
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.ehlo()
             server.starttls(context=context)

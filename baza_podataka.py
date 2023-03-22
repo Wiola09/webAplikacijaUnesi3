@@ -11,12 +11,16 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+
 class Nalozi(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     broj_naloga = db.Column(db.String(250), nullable=False)
+    godina_dve_cifre = db.Column(db.Integer, nullable=False, default=int(datetime.now().strftime('%y')))
     ime_izvrsioca = db.Column(db.String(250), nullable=False)
     ime_saradnika_1 = db.Column(db.String(250), nullable=False)
     datum_naloga = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    datum_vreme_pocetka = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    datum_vreme_kraja = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     EE_objekat = db.Column(db.String(250), nullable=False)
     opis_zadatka = db.Column(db.String(500), nullable=False)
 
@@ -24,9 +28,22 @@ class Nalozi(db.Model):
     def __repr__(self):
         return f'<Nalozi {self.ime_izvrsioca}>'
     
-    def pretrazi_po_datumu(self, vreme_pocetka, vreme_kraja):
+    def pretrazi_db_po_datumu(self, vreme_pocetka, vreme_kraja, ime):
         return Nalozi.query.filter(Nalozi.datum_naloga > vreme_pocetka,
-                            Nalozi.datum_naloga < vreme_kraja).all()
+                                   Nalozi.datum_naloga < vreme_kraja, Nalozi.ime_izvrsioca == ime).all()
+
+    def pretrazi_db_po_vrednosti(self, vrednost_za_pretragu):
+        return Nalozi.query.filter_by(broj_naloga=vrednost_za_pretragu).first()
+
+    def svi_nalozi_lista(self):
+        return db.session.query(Nalozi).all()
 
     pass
     # Kreiranje tabele po klasi Nalozi
+
+
+"""Prvo uvozimo db i Nalozi klase iz baza_podataka modula. 
+Zatim koristimo db.session.query da bismo izvršili upit nad bazom podataka.
+U ovom upitu koristimo funkciju db.func.max da bismo pronašli maksimalnu vrednost u koloni "id". 
+Ova funkcija se naziva kao metoda query objekta sesije, a njen rezultat se dobija pozivom metode scalar.
+KOd je max_id = db.session.query(db.func.max(Nalozi.id)).scalar()"""
