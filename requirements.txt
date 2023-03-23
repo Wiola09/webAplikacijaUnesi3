@@ -39,3 +39,4 @@ Werkzeug==2.2.3
 WTForms==3.0.1
 yagmail==0.15.293
 zipp==3.15.0
+psycopg2-binary==2.9.3
