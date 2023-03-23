@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, url_for, redirect, request
 from flask_bootstrap import Bootstrap
 from sqlalchemy.sql.expression import func
@@ -12,7 +14,9 @@ from manipulacija_exel import PromeniEksel
 app = Flask(__name__)
 
 # CONNECT TO DB, kreiranje DB sa nazivom novi-nalozi-collection.db', specifično za SQL lite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///nalozi6-collection.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///nalozi6-collection.db'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL1", "sqlite:///nalozi-collection.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # db = SQLAlchemy(app)  ### Ovaj deo je bio dok je class Nalozi(db.Model): bila definisna u ovom fajlu
 db.init_app(app)  # vidi komentar u baza_podataka
